@@ -1,5 +1,7 @@
 Gift Genie: An App to Revolutionize Gift Giving
+
 By The Givers
+
 Alex Nehls, Emily Plank, Abby Prosise, Syd Shelby, and Derek Sun
 
 I. Introduction 
