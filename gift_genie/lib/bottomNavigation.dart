@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'user.dart';
-import 'calendarPage.dart';
-import 'contactPage.dart';
-import 'homePage.dart';
-import 'profilePage.dart';
-import 'listPage.dart';
+import 'package:gift_genie/calendar/calendarPage.dart';
+import 'package:gift_genie/contacts/contactPage.dart';
+import 'package:gift_genie/home/homePage.dart';
+import 'package:gift_genie/profile/profilePage.dart';
+import 'package:gift_genie/list/listPage.dart';
 
 
 class BottomNavigationWidget extends StatefulWidget {

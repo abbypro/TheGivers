@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'loginPage.dart';
-import 'recoverPasswdPage.dart';
-import 'registerPage.dart';
+import 'package:gift_genie/auth/loginPage.dart';
+import 'package:gift_genie/auth/recoverPasswdPage.dart';
+import 'package:gift_genie/auth/registerPage.dart';
 import 'bottomNavigation.dart';
 
 //tells main to run MyApp class
