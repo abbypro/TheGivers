@@ -9,9 +9,14 @@ class User {
   var location;
   var email;
   var cellphone;
-  var picture;
+  var imageUrl;
 
-  User(this.name, this.year, this.month, this.day, this.gender);
+  User(this.name, this.month, this.day, this.year, this.gender);
+
+  Future getImageUrl() async {
+    if(imageUrl != null)
+      return;
+  }
 
 
 }
