@@ -23,7 +23,7 @@ class _HomePageState extends State<HomePage> {
 
     return Scaffold(
       appBar: AppBar(
-          title: Text("Home"), //title on top of app bar
+          title: Text("Friends' Recent Activities"), //title on top of app bar
           backgroundColor: Colors.purple[500]
       ),
       body: new ListView.builder(
@@ -70,8 +70,8 @@ class _UserUpdateEntryState extends State<UserUpdateEntry> {
 
   Widget get userImage {
     return Container(
-      width: 100,
-      height: 100,
+      width: 75,
+      height: 75,
       decoration: BoxDecoration(
         shape: BoxShape.circle,
         image: DecorationImage(
@@ -90,7 +90,7 @@ class _UserUpdateEntryState extends State<UserUpdateEntry> {
             padding: const EdgeInsets.only(
               top: 8.0,
               bottom: 8.0,
-              left: 64.0,
+              left: 90.0,
             ),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
