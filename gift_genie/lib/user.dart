@@ -11,6 +11,8 @@ class User {
   var cellphone;
   var imageUrl;
 
+  var status = "TEST STATUS";
+
   User(this.name, this.month, this.day, this.year, this.gender);
 
   Future getImageUrl() async {

@@ -20,6 +20,7 @@ class MyApp extends StatelessWidget {
         "HomePage":(_) => BottomNavigationWidget(),
         "Registration":(_) => RegisterPage(),
         "RecoverPasswd":(_) => RecoverPage(),
+        "LoginPage":(_) => LoginPage(),
       },
     );
   }

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import '../bottomNavigation.dart';
+import 'registerPage.dart';
 
 class LoginPage extends StatefulWidget {
   @override
@@ -52,7 +53,8 @@ class _LoginPageState extends State<LoginPage> {
                 buildOtherMethod(context),
                 buildRegisterText(context),
               ],
-            )));
+            )),
+    );
   }
 
   //Registration Info, at bottom
@@ -169,7 +171,6 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 
-
   //Password and Email Field
   TextFormField buildPasswordTextField(BuildContext context) {
     return TextFormField(
@@ -213,7 +214,6 @@ class _LoginPageState extends State<LoginPage> {
       onSaved: (String value) => _email = value,
     );
   }
-
 
   //Title
   Padding buildTitleLine() {
