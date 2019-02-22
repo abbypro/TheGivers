@@ -1,7 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
-import '../bottomNavigation.dart';
-import 'registerPage.dart';
+import 'package:gift_genie/bottomNavigation.dart';
+import 'package:gift_genie/auth/authPages/registerPage.dart';
+import 'package:gift_genie/auth/state_widget.dart';
+
+enum AuthStatus {
+  notDetermined,
+  notSignedIn,
+  signedIn,
+}
 
 class LoginPage extends StatefulWidget {
   @override
@@ -17,14 +24,20 @@ class _LoginPageState extends State<LoginPage> {
     {
       "title": "facebook",
       "icon": MdiIcons.facebook,
+      "page": "facebookLogin",
+      "id": 0,
     },
     {
       "title": "google",
       "icon": MdiIcons.google,
+      "page": "googleLogin",
+      "id": 1,
     },
     {
       "title": "twitter",
       "icon": MdiIcons.twitter,
+      "page": "twitterLogin",
+      "id": 2,
     },
   ];
 
@@ -74,7 +87,7 @@ class _LoginPageState extends State<LoginPage> {
               ),
               onTap: () {
                 //TODO Go to register page
-                Navigator.of(context).pushNamed("Registration");
+                Navigator.of(context).pushNamed("/Registration");
                 //print('Go to register');
                 //Navigator.pop(context);
               },
@@ -94,9 +107,19 @@ class _LoginPageState extends State<LoginPage> {
         builder: (context) {
           return IconButton(
               icon: Icon(item['icon'],
-                  color: Theme.of(context).iconTheme.color),
-              onPressed: () {
-                //TODO : Third option
+              color: Theme.of(context).iconTheme.color),
+              onPressed: () async {
+                await StateWidget.of(context).signInWithGoogle();
+                if(StateWidget.of(context).state.isSignedIn == true) {
+                  Navigator.of(context).pushNamed("/HomePage");
+                }
+                else {
+                  Scaffold.of(context).showSnackBar(new SnackBar(
+                    content: new Text("${item['title']}Login Failed..."),
+                  ));
+                }
+              }
+                /*
                 Scaffold.of(context).showSnackBar(new SnackBar(
                   content: new Text("${item['title']}Login"),
                   action: new SnackBarAction(
@@ -104,9 +127,11 @@ class _LoginPageState extends State<LoginPage> {
                     onPressed: () {},
                   ),
                 ));
-              });
+                */
+              );
         },
-      ))
+      )
+      )
           .toList(),
     );
   }
@@ -133,7 +158,7 @@ class _LoginPageState extends State<LoginPage> {
           ),
           color: Colors.blueGrey,
           onPressed: () {
-            Navigator.of(context).pushNamed("HomePage");
+            Navigator.of(context).pushNamed("/HomePage");
             //TODO: Validation method
             /*
             if (_formKey.currentState.validate()) {
@@ -163,7 +188,7 @@ class _LoginPageState extends State<LoginPage> {
             style: TextStyle(fontSize: 14.0, color: Colors.grey),
           ),
           onPressed: () {
-            Navigator.of(context).pushNamed("RecoverPasswd");
+            Navigator.of(context).pushNamed("/RecoverPasswd");
             //Navigator.pop(context);
           },
         ),

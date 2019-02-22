@@ -1,4 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:gift_genie/auth/state.dart';
+import 'package:gift_genie/auth/state_widget.dart';
+import 'package:gift_genie/utils/settings_button.dart';
+
 
 class ProfilePage extends StatefulWidget {
   @override
@@ -7,8 +13,13 @@ class ProfilePage extends StatefulWidget {
 
 class ProfilePageState extends State<ProfilePage> {
 
+  StateModel _appState;
+
   @override
   Widget build(BuildContext context) {
+
+    _appState = StateWidget.of(context).state;
+
     return Scaffold(
       appBar: AppBar(
         title: Text('Profile'),
@@ -19,22 +30,27 @@ class ProfilePageState extends State<ProfilePage> {
 
   //Log Out Button
   Align _buildButton() {
+
     return Align(
+      //crossAxisAlignment: CrossAxisAlignment.center,
       child: SizedBox(
         height: 45.0,
-        width: 200.0,
-        child: RaisedButton(
-          child: Text(
-            'Log Out',
-            style: Theme.of(context).primaryTextTheme.headline,
-          ),
-          color: Colors.red,
-          onPressed: () {
-              Navigator.of(context).pushNamed("LoginPage");
-          },
-          shape: StadiumBorder(side: BorderSide()),
-        ),
+          width: 150.0,
+          child :SettingsButton(
+            Icons.exit_to_app,
+            'Log out',
+            () async {
+              await StateWidget.of(context).signOutOfGoogle();
+              if(StateWidget.of(context).state.isSignedIn == false) {
+                Navigator.of(context).pushNamedAndRemoveUntil("/LoginPage", (Route<dynamic> route) => false);
+              }
+            },
+          )
       ),
     );
+  }
+
+  void logOutOfApp() {
+
   }
 }

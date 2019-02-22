@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import '../user.dart';
+import 'package:gift_genie/auth/state.dart';
+import 'package:gift_genie/auth/state_widget.dart';
+import 'package:gift_genie/auth/authPages/loginPage.dart';
 
 class HomePage extends StatefulWidget {
 
@@ -9,6 +12,8 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+
+  StateModel _appState;
 
   double _imageWidth = 512;
   double _imageHeight = 220;
@@ -28,17 +33,13 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
 
+    _appState = StateWidget.of(context).state;
+
+    //return _buildContent();
     return Scaffold(
-      body: new Stack(
-        children: <Widget>[
-          _buildImage(),
-          _buildHeader(),
-          _buildProfileRow(),
-          _buildBottomPart(),
-          _buildTimeline(),
-        ],
-      ),
+      body: _buildContent(),
     );
+
     }
 
   //TODO User can choose pic themselves
@@ -168,6 +169,35 @@ class _HomePageState extends State<HomePage> {
       child: new ListView(
         children: entryList.map((user) => new UserUpdateEntry(user: user)).toList(),
       ),
+    );
+  }
+
+  Widget _buildContent() {
+
+    if (_appState.isLoading) {
+      return _buildLoadingIndicator();
+    }
+    else {
+      return _buildWholePage();
+    }
+  }
+
+  Widget _buildWholePage() {
+
+    return new Stack(
+      children: <Widget>[
+        _buildImage(),
+        _buildHeader(),
+        _buildProfileRow(),
+        _buildBottomPart(),
+        _buildTimeline(),
+      ],
+    );
+  }
+
+  Center _buildLoadingIndicator() {
+    return Center(
+      child: new CircularProgressIndicator(),
     );
   }
 
